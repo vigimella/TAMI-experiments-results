@@ -27,6 +27,17 @@ def standard_parameters(file, txt_file, filed_to_check, index_before, default_pa
         text_file.close()
 
 
+def standard_parameters_end_file(file, txt_file, filed_to_check, default_parameter):
+    if not filed_to_check in txt_file:
+        after_lr = txt_file[0:len(txt_file)]
+
+        new_file = after_lr + default_parameter
+
+        text_file = open(file, "w")
+        text_file.write(new_file)
+        text_file.close()
+
+
 def get_unique_file(dir_url, output_name, digits):
     dfl = list()
     col = ['file_path', 'model', 'epochs', 'batch_size', 'learning_rate', 'size_img', 'test_loss', 'test_accuracy',
@@ -54,7 +65,7 @@ def get_unique_file(dir_url, output_name, digits):
 
     for file in file_to_check:
 
-        text_file = open(file, "r")
+        text_file = open(file, "r+")
         text_file_new = str(text_file.read())
         text_file.close()
 
@@ -65,6 +76,7 @@ def get_unique_file(dir_url, output_name, digits):
         standard_parameters(file, text_file_new, 'epochs', 'output_model', 'epochs = 10')
         standard_parameters(file, text_file_new, 'batch_size', 'learning_rate', 'batch_size = 32')
         standard_parameters(file, text_file_new, 'size_img', 'data_type', 'size_img = 100x1')
+        standard_parameters_end_file(file, text_file_new, 'EX. TIME', 'EX. TIME: Not Available')
 
         if 'Error' in text_file_new:
             text_file_new.replace('Error\n', '0')
