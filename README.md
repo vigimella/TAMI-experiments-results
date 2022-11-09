@@ -1,4 +1,4 @@
-# get-unique-file-from-tami-experiments
+# TAMI-experiments-results
 
 This script allows merging all files .results obtained after experimentation executions on TAMI.
 
